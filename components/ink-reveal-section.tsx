@@ -12,7 +12,9 @@ export default function InkRevealSection() {
 
   useEffect(() => {
     const loadAnime = async () => {
-      const anime = (await import("animejs")).default
+      const animeModule = await import("animejs");
+
+      const anime = animeModule.default || animeModule
       if (isInView && svgRef.current) {
         anime({
           targets: svgRef.current?.querySelector(".ink-path"),

@@ -147,7 +147,7 @@ export default function ProductShowcase() {
               key={category.id}
               className={`px-6 py-2 rounded-full text-sm transition-colors ${
                 selectedCategory === category.id
-                  ? "bg-gradient-to-r from-amber-500 to-orange-600 text-white"
+                  ? "bg-gradient-to-r from-cyan-500 to-red-600 text-white"
                   : "bg-gray-800 text-gray-300 hover:bg-gray-700"
               }`}
               onClick={() => setSelectedCategory(category.id)}
@@ -170,7 +170,7 @@ export default function ProductShowcase() {
                 animate={{ opacity: 1, scale: 1 }}
                 exit={{ opacity: 0, scale: 0.8 }}
                 transition={{ duration: 0.4 }}
-                className="product-card relative bg-gray-800/50 backdrop-blur-sm rounded-xl overflow-hidden border border-gray-700 hover:border-amber-500/50 transition-all duration-300"
+                className="product-card relative bg-gray-800/50 backdrop-blur-sm rounded-xl overflow-hidden border border-gray-700 hover:border-blue-500/50 transition-all duration-300"
                 onMouseEnter={() => setHoveredProduct(product.id)}
                 onMouseLeave={() => setHoveredProduct(null)}
               >
@@ -241,7 +241,7 @@ export default function ProductShowcase() {
                     </div>
 
                     <motion.button
-                      className="px-3 py-1 bg-amber-600/20 text-amber-400 rounded-full text-xs font-medium hover:bg-amber-600/30 transition-colors"
+                      className="px-3 py-1 bg-blue-600/20 text-cyan-400 rounded-full text-xs font-medium hover:bg-blue-600/30 transition-colors"
                       whileHover={{ scale: 1.05 }}
                       whileTap={{ scale: 0.95 }}
                     >

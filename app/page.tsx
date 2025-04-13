@@ -11,6 +11,8 @@ import BlockchainFlow from "@/components/blockchain-flow"
 import NFTMintSection from "@/components/nft-mint-section"
 import Footer from "@/components/footer"
 import InkRevealSection from "@/components/ink-reveal-section"
+import MeetOurArtisans from "@/components/meet-our-artisans"
+import BengalDao from "@/components/bengal-dao"
 
 // Register GSAP plugins
 if (typeof window !== "undefined") {
@@ -38,6 +40,8 @@ export default function Home() {
       <ArtisanJourney />
       <ProductShowcase />
       <BlockchainFlow />
+      <BengalDao />
+      <MeetOurArtisans />
       <NFTMintSection />
       <Footer />
     </div>

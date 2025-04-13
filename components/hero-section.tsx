@@ -65,10 +65,7 @@ export default function HeroSection() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.2 }}
             >
-              Empowering Artisans with{" "}
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-amber-400 to-orange-600">
-                Blockchain
-              </span>
+              Authentic Bengal Handicrafts on the Blockchain
             </motion.h1>
 
             <motion.p
@@ -87,7 +84,7 @@ export default function HeroSection() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.6 }}
             >
-              <button className="px-8 py-3 rounded-full bg-gradient-to-r from-amber-500 to-orange-600 text-white font-medium text-lg hover:shadow-lg hover:shadow-amber-500/20 transition-all">
+              <button className="px-8 py-3 rounded-full bg-gradient-to-r from-cyan-400 to-red-600 text-white font-medium text-lg hover:shadow-lg hover:shadow-amber-500/20 transition-all">
                 Explore Marketplace
               </button>
               <button className="px-8 py-3 rounded-full border-2 border-white/20 text-white font-medium text-lg hover:bg-white/10 transition-all">

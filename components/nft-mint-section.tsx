@@ -116,7 +116,7 @@ export default function NFTMintSection() {
                   {isMinting && particles}
 
                   {/* Shimmer effect */}
-                  <div className="absolute inset-0 bg-gradient-to-tr from-amber-500/10 to-orange-600/10 pointer-events-none"></div>
+                  <div className="absolute inset-0 bg-gradient-to-tr from-cyan-500/10 to-red-600/10 pointer-events-none"></div>
                   <div className="absolute inset-0 animate-shimmer bg-[length:200%_100%] pointer-events-none bg-gradient-to-r from-transparent via-white/10 to-transparent"></div>
                 </motion.div>
               </AnimatePresence>
@@ -128,7 +128,7 @@ export default function NFTMintSection() {
                 <button
                   key={nft.id}
                   className={`w-3 h-3 rounded-full transition-all ${
-                    activeNFT === index ? "bg-amber-500 scale-125" : "bg-gray-600 hover:bg-gray-500"
+                    activeNFT === index ? "bg-cyan-500 scale-125" : "bg-gray-600 hover:bg-gray-500"
                   }`}
                   onClick={() => setActiveNFT(index)}
                 />
@@ -172,7 +172,7 @@ export default function NFTMintSection() {
                   whileTap={{ scale: 0.98 }}
                 >
                   {/* Button background with gradient */}
-                  <div className="absolute inset-0 bg-gradient-to-r from-amber-500 to-orange-600"></div>
+                  <div className="absolute inset-0 bg-gradient-to-r from-cyan-500 to-red-600"></div>
 
                   {/* Glowing effect */}
                   <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300">

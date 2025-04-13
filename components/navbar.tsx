@@ -4,6 +4,7 @@ import { useState, useEffect } from "react"
 import Link from "next/link"
 import { motion } from "framer-motion"
 import { Menu, X, ShoppingBag } from "lucide-react"
+import { ConnectButton } from "@rainbow-me/rainbowkit"
 
 export default function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false)
@@ -29,13 +30,13 @@ export default function Navbar() {
       <div className="container mx-auto px-4 flex justify-between items-center">
         <Link href="/" className="flex items-center gap-2">
           <motion.div
-            className="w-10 h-10 rounded-full bg-gradient-to-br from-amber-500 to-orange-600 flex items-center justify-center"
+            className="w-10 h-10 rounded-full bg-gradient-to-br from-cyan-500 to-red-600 flex items-center justify-center"
             whileHover={{ scale: 1.1 }}
             whileTap={{ scale: 0.95 }}
           >
-            <span className="text-white font-bold text-xl">A</span>
+            <span className="text-white font-bold text-xl">C</span>
           </motion.div>
-          <span className="text-xl font-bold">ArtisanChain</span>
+          <span className="text-xl font-bold">CraftsChain</span>
         </Link>
 
         <nav className="hidden md:flex items-center gap-8">
@@ -60,18 +61,18 @@ export default function Navbar() {
             className="p-2 rounded-full bg-gray-800 text-gray-300 hover:text-white relative"
           >
             <ShoppingBag className="h-5 w-5" />
-            <span className="absolute -top-1 -right-1 w-4 h-4 bg-amber-500 rounded-full text-xs flex items-center justify-center">
+            <span className="absolute -top-1 -right-1 w-4 h-4 bg-red-500 rounded-full text-xs flex items-center justify-center">
               3
             </span>
           </motion.button>
 
-          <motion.button
+          <motion.div
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
-            className="px-6 py-2 rounded-full bg-gradient-to-r from-amber-500 to-orange-600 text-white font-medium"
+            className="px-6 py-2 rounded-full bg-gradient-to-r from-cyan-500 to-red-600 text-white font-medium"
           >
-            Connect Wallet
-          </motion.button>
+            <ConnectButton />
+          </motion.div>
         </div>
 
         <button

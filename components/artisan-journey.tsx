@@ -108,7 +108,7 @@ export default function ArtisanJourney() {
         <div ref={timelineRef} className="relative max-w-5xl mx-auto">
           {/* Timeline progress bar */}
           <div className="absolute left-1/2 transform -translate-x-1/2 w-1 h-full bg-gray-800">
-            <div className="timeline-progress w-full bg-gradient-to-b from-amber-500 to-orange-600 h-0"></div>
+            <div className="timeline-progress w-full bg-gradient-to-b from-cyan-500 to-red-600 h-0"></div>
           </div>
 
           {/* Journey stages */}
@@ -120,7 +120,7 @@ export default function ArtisanJourney() {
               } items-center gap-8 mb-24 last:mb-0`}
             >
               {/* Timeline dot */}
-              <div className="absolute left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2 w-6 h-6 rounded-full border-2 border-amber-500 bg-black z-10"></div>
+              <div className="absolute left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2 w-6 h-6 rounded-full border-2 border-red-500 bg-black z-10"></div>
 
               {/* Image */}
               <div className="stage-image md:w-1/2 overflow-hidden rounded-xl">
@@ -136,7 +136,7 @@ export default function ArtisanJourney() {
               {/* Content */}
               <div className="stage-content md:w-1/2 p-6">
                 <div className="bg-gray-800/50 backdrop-blur-sm rounded-xl p-6 border border-gray-700">
-                  <h3 className="text-2xl font-bold mb-3 text-amber-500">{stage.title}</h3>
+                  <h3 className="text-2xl font-bold mb-3">{stage.title}</h3>
                   <p className="text-gray-300">{stage.description}</p>
                 </div>
               </div>

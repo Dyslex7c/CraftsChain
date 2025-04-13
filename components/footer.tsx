@@ -11,10 +11,10 @@ export default function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8 mb-12">
           <div>
             <Link href="/" className="flex items-center gap-2 mb-4">
-              <div className="w-10 h-10 rounded-full bg-gradient-to-br from-amber-500 to-orange-600 flex items-center justify-center">
-                <span className="text-white font-bold text-xl">A</span>
+              <div className="w-10 h-10 rounded-full bg-gradient-to-br from-cyan-500 to-red-600 flex items-center justify-center">
+                <span className="text-white font-bold text-xl">C</span>
               </div>
-              <span className="text-xl font-bold">ArtisanChain</span>
+              <span className="text-xl font-bold">CraftsChain</span>
             </Link>
             <p className="text-gray-400 mb-4">
               Connecting traditional craftsmanship with blockchain technology to create a transparent, fair marketplace.

@@ -136,15 +136,15 @@ export default function BlockchainFlow() {
               strokeLinecap="round"
             />
             <linearGradient id="flowGradient" x1="0%" y1="0%" x2="100%" y2="0%">
-              <stop offset="0%" stopColor="#f59e0b" />
-              <stop offset="100%" stopColor="#ea580c" />
+              <stop offset="0%" stopColor="#fff" />
+              <stop offset="100%" stopColor="#2596be" />
             </linearGradient>
 
             {/* Timestamp markers */}
-            <circle className="timestamp-marker" cx="200" cy="20" r="6" fill="#f59e0b" />
-            <circle className="timestamp-marker" cx="400" cy="80" r="6" fill="#f59e0b" />
-            <circle className="timestamp-marker" cx="600" cy="20" r="6" fill="#f59e0b" />
-            <circle className="timestamp-marker" cx="800" cy="80" r="6" fill="#f59e0b" />
+            <circle className="timestamp-marker" cx="200" cy="20" r="6" fill="#fff" />
+            <circle className="timestamp-marker" cx="400" cy="80" r="6" fill="#fff" />
+            <circle className="timestamp-marker" cx="600" cy="20" r="6" fill="#fff" />
+            <circle className="timestamp-marker" cx="800" cy="80" r="6" fill="#fff" />
           </svg>
 
           {/* Flow nodes */}
@@ -152,7 +152,7 @@ export default function BlockchainFlow() {
             {flowSteps.map((step, index) => (
               <div key={index} className="flow-node relative z-10 w-1/4 px-4">
                 <div className={`flex flex-col items-center ${index % 2 === 0 ? "pt-0 pb-32" : "pt-32 pb-0"}`}>
-                  <div className="w-20 h-20 rounded-full bg-gray-800 border-2 border-amber-500 flex items-center justify-center mb-4">
+                  <div className="w-20 h-20 rounded-full bg-gray-800 border-2 border-cyan-500 flex items-center justify-center mb-4">
                     {step.icon}
                   </div>
                   <h3 className="text-xl font-bold mb-2">{step.title}</h3>
@@ -162,7 +162,7 @@ export default function BlockchainFlow() {
                 {index < flowSteps.length - 1 && (
                   <div
                     className="absolute top-1/2 -right-4 transform translate-x-1/2 -translate-y-1/2 z-20"
-                    style={{ color: "#f59e0b" }}
+                    style={{ color: "#fff" }}
                   >
                     <ArrowRight className="h-6 w-6" />
                   </div>
@@ -182,7 +182,7 @@ export default function BlockchainFlow() {
           </p>
           <div className="flex flex-col sm:flex-row gap-4">
             <motion.button
-              className="px-6 py-3 rounded-lg bg-gradient-to-r from-amber-500 to-orange-600 text-white font-medium"
+              className="px-6 py-3 rounded-lg bg-gradient-to-r from-cyan-500 to-red-600 text-white font-medium"
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
             >
