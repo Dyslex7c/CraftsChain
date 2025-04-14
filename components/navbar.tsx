@@ -5,6 +5,7 @@ import Link from "next/link"
 import { motion } from "framer-motion"
 import { Menu, X, ShoppingBag } from "lucide-react"
 import { ConnectButton } from "@rainbow-me/rainbowkit"
+import RegisterButton from "./register-button"
 
 export default function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false)
@@ -65,6 +66,8 @@ export default function Navbar() {
               3
             </span>
           </motion.button>
+
+          <RegisterButton />
 
           <motion.div
             whileHover={{ scale: 1.05 }}
@@ -131,6 +134,14 @@ export default function Navbar() {
                   3
                 </span>
               </button>
+
+              <Link
+                href="/register"
+                className="px-4 py-2 rounded-full bg-gradient-to-r from-cyan-500 to-red-600 text-white font-medium"
+                onClick={() => setMobileMenuOpen(false)}
+              >
+                Register
+              </Link>
 
               <button className="flex-1 px-6 py-2 rounded-full bg-gradient-to-r from-amber-500 to-orange-600 text-white font-medium">
                 Connect Wallet
