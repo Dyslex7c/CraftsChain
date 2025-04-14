@@ -1,6 +1,6 @@
 "use client"
 
-import { useState, useRef } from "react"
+import { useState, useRef, useEffect } from "react"
 import { motion } from "framer-motion"
 import {
   ChevronRight,
@@ -13,9 +13,11 @@ import {
   Shield,
   AlertCircle,
   X,
+  ExternalLink,
 } from "lucide-react"
 import { ConnectButton } from "@rainbow-me/rainbowkit"
 import { useAccount } from "wagmi"
+import { useArtisanSBTMint } from "@/hooks/useArtisanSBTMint"
 
 const craftTypes = [
   "Kantha",
@@ -33,6 +35,7 @@ const craftTypes = [
 
 export default function ArtisanKYC() {
   const { isConnected, address } = useAccount();
+  const { mintArtisanNFT, isPending, isConfirming, isSuccess, isError, error, transactionHash } = useArtisanSBTMint();
   const [step, setStep] = useState(1)
   const [formData, setFormData] = useState({
     fullName: "",
@@ -51,6 +54,15 @@ export default function ArtisanKYC() {
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [isSubmitted, setIsSubmitted] = useState(false)
   const fileInputRef = useRef(null)
+
+  // Add this useEffect to watch for transaction success
+  useEffect(() => {
+    if (isSuccess && transactionHash) {
+      // Only show success screen after transaction confirms
+      setIsSubmitted(true);
+      setIsSubmitting(false);
+    }
+  }, [isSuccess, transactionHash]);
 
   const handleInputChange = (e) => {
     const { name, value, type, checked } = e.target
@@ -137,6 +149,7 @@ export default function ArtisanKYC() {
       if (formData.documents.length === 0) newErrors.documents = "Please upload at least one document"
     } else if (currentStep === 4) {
       if (!formData.walletConnected) newErrors.wallet = "Please connect your wallet"
+      if (!formData.agreeTerms) newErrors.terms = "Please agree to the terms and conditions"
     }
 
     setErrors(newErrors)
@@ -155,19 +168,31 @@ export default function ArtisanKYC() {
 
   const handleSubmit = async () => {
     if (validateStep(step)) {
-      setIsSubmitting(true)
-
-      // Simulate API call
+      setIsSubmitting(true);
+  
       try {
-        await new Promise((resolve) => setTimeout(resolve, 2000))
-        setIsSubmitted(true)
+        // Call the contract to mint the NFT
+        if (formData.walletConnected) {
+          const tokenId = await mintArtisanNFT(formData);
+          
+          // Store verification ID for display
+          setFormData(prev => ({
+            ...prev,
+            tokenId
+          }));
+        }
+
+        if (isSuccess) {
+          setIsSubmitted(true);
+        }
+        
       } catch (error) {
-        console.error("Error submitting form:", error)
+        console.error("Error submitting form:", error);
       } finally {
-        setIsSubmitting(false)
+        setIsSubmitting(false);
       }
     }
-  }
+  };
 
   const renderStepIndicator = () => {
     return (
@@ -204,6 +229,26 @@ export default function ArtisanKYC() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
         >
+          <div className="bg-gray-100 p-4 rounded-lg mb-6 text-left">
+        <p className="font-medium">
+          Token ID: <span className="font-normal">{formData.tokenId}</span>
+        </p>
+        <p className="font-medium">
+          Submitted on: <span className="font-normal">{new Date().toLocaleDateString()}</span>
+        </p>
+        {transactionHash && (
+          <p className="font-medium">
+            Transaction: <a 
+              href={`https://sepolia.basescan.org/tx/${transactionHash}`}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-blue-600 hover:underline flex items-center gap-1"
+            >
+              View on Base Sepolia Scan <ExternalLink className="w-3 h-3" />
+            </a>
+          </p>
+        )}
+      </div>
           <div className="flex justify-center mb-6">
             <motion.div
               className="w-20 h-20 rounded-full bg-gradient-to-r from-cyan-500 to-red-600 flex items-center justify-center"
@@ -625,7 +670,7 @@ export default function ArtisanKYC() {
                           d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
                         ></path>
                       </svg>
-                      Processing...
+                      {isPending ? "Confirm in wallet..." : isConfirming ? "Confirming transaction..." : "Processing..."}
                     </>
                   ) : (
                     <>
