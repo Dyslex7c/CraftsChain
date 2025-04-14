@@ -16,9 +16,15 @@ import {
   Award,
   Vote,
   MessageCircle,
+  AlertCircle
 } from "lucide-react"
+import { useArtisanSBT } from "@/hooks/useArtisanSBT"
+import { Loader } from "@/components/loader"
 
 export default function DashboardSidebar({ isOpen, setIsOpen }) {
+  // Use the custom hook to get artisan SBT data
+  const { hasArtisanSBT, artisanData, isLoading, error } = useArtisanSBT();  
+
   const menuItems = [
     { icon: Home, label: "Dashboard", href: "/artisan-dashboard" },
     { icon: Palette, label: "My Crafts", href: "/artisan-dashboard/crafts" },
@@ -36,6 +42,16 @@ export default function DashboardSidebar({ isOpen, setIsOpen }) {
     { icon: HelpCircle, label: "Help & Support", href: "/artisan-dashboard/support" },
     { icon: LogOut, label: "Logout", href: "/logout" },
   ]
+
+  // Generate initials from the artisan's name
+  const getInitials = (name) => {
+    if (!name) return "?";
+    return name
+      .split(' ')
+      .map(word => word[0])
+      .join('')
+      .toUpperCase();
+  }
 
   return (
     <>
@@ -69,16 +85,50 @@ export default function DashboardSidebar({ isOpen, setIsOpen }) {
         <div className="p-4">
           <div className="flex items-center gap-3 mb-6">
             <div className="w-12 h-12 rounded-full bg-gradient-to-br from-cyan-500 to-red-600 flex items-center justify-center">
-              <span className="text-white font-bold text-xl">RS</span>
+              <span className="text-white font-bold text-xl">
+                {isLoading ? "..." : (artisanData ? getInitials(artisanData.fullName) : "?")}
+              </span>
             </div>
             <div>
-              <h3 className="font-medium text-black">Rupa Sutradhar</h3>
-              <div className="flex items-center gap-1">
-                <span className="inline-block w-2 h-2 rounded-full bg-green-500"></span>
-                <span className="text-xs text-gray-500">Verified Artisan</span>
-              </div>
+              {isLoading ? (
+                <Loader />
+              ) : error ? (
+                <h3 className="font-medium text-red-500">Connection Error</h3>
+              ) : artisanData ? (
+                <>
+                  <h3 className="font-medium text-black">{artisanData.fullName}</h3>
+                  <div className="flex items-center gap-1">
+                    <span className={`inline-block w-2 h-2 rounded-full ${artisanData.active ? 'bg-green-500' : 'bg-red-500'}`}></span>
+                    <span className="text-xs text-gray-500">
+                      {artisanData.active ? 'Verified' : 'Verification Revoked'}
+                    </span>
+                  </div>
+                </>
+              ) : (
+                <>
+                  <h3 className="font-medium text-black">Guest User</h3>
+                  <div className="flex items-center gap-1">
+                    <span className="inline-block w-2 h-2 rounded-full bg-yellow-500"></span>
+                    <span className="text-xs text-gray-500">Not Verified</span>
+                  </div>
+                </>
+              )}
             </div>
           </div>
+
+          {error && (
+            <div className="mb-4 p-2 bg-red-50 text-red-700 text-sm rounded flex items-center gap-2">
+              <AlertCircle className="h-4 w-4" />
+              <span>Error connecting to blockchain</span>
+            </div>
+          )}
+
+          {!hasArtisanSBT && !isLoading && !error && (
+            <div className="mb-4 p-2 bg-yellow-50 text-yellow-700 text-sm rounded flex items-center gap-2">
+              <AlertCircle className="h-4 w-4" />
+              <span>No Artisan SBT found</span>
+            </div>
+          )}
 
           <nav className="space-y-1">
             {menuItems.map((item, index) => (
