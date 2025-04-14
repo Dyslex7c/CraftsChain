@@ -4,6 +4,7 @@ import { useEffect, useRef } from "react"
 import { motion } from "framer-motion"
 import { gsap } from "gsap"
 import { ScrollTrigger } from "gsap/ScrollTrigger"
+import Link from "next/link"
 
 export default function HeroSection() {
   const sectionRef = useRef<HTMLDivElement>(null)
@@ -84,9 +85,9 @@ export default function HeroSection() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.6 }}
             >
-              <button className="px-8 py-3 rounded-full bg-gradient-to-r from-cyan-400 to-red-600 text-white font-medium text-lg hover:shadow-lg hover:shadow-amber-500/20 transition-all">
+              <Link href="./market-place"><button className="px-8 py-3 rounded-full bg-gradient-to-r from-cyan-400 to-red-600 text-white font-medium text-lg hover:shadow-lg hover:shadow-amber-500/20 transition-all">
                 Explore Marketplace
-              </button>
+              </button></Link>
               <button className="px-8 py-3 rounded-full border-2 border-white/20 text-white font-medium text-lg hover:bg-white/10 transition-all">
                 Learn More
               </button>
