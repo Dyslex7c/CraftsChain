@@ -66,19 +66,19 @@ export default function ArtisanJourney() {
       title: "Raw Materials",
       description:
         "Ethically sourced materials from local suppliers, ensuring sustainability and supporting local economies.",
-      image: "/placeholder.svg?height=400&width=600",
+      image: "https://cdn.pixabay.com/photo/2020/04/19/12/26/sewing-kit-5063401_1280.jpg",
     },
     {
       title: "Artisan Creation",
       description:
         "Skilled craftspeople transform raw materials into beautiful handcrafted items using traditional techniques passed down through generations.",
-      image: "/placeholder.svg?height=400&width=600",
+      image: "https://cdn.pixabay.com/photo/2022/06/08/15/23/ceramics-7250708_1280.jpg",
     },
     {
       title: "Blockchain Verification",
       description:
         "Each product is registered on the blockchain with a unique digital certificate, ensuring authenticity and traceability.",
-      image: "/placeholder.svg?height=400&width=600",
+      image: "https://cdn.pixabay.com/photo/2018/07/30/11/34/block-chain-3572402_960_720.jpg",
     },
     {
       title: "Global Distribution",
