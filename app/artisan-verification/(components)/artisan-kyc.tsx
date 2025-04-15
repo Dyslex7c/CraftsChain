@@ -168,27 +168,24 @@ export default function ArtisanKYC() {
 
   const handleSubmit = async () => {
     if (validateStep(step)) {
+      // Don't submit if already submitted or pending
+      if (isSubmitting || isSubmitted) return;
+      
       setIsSubmitting(true);
   
       try {
         // Call the contract to mint the NFT
         if (formData.walletConnected) {
-          const tokenId = await mintArtisanNFT(formData);
+          const verificationId = await mintArtisanNFT(formData);
           
           // Store verification ID for display
           setFormData(prev => ({
             ...prev,
-            tokenId
+            verificationId
           }));
         }
-
-        if (isSuccess) {
-          setIsSubmitted(true);
-        }
-        
       } catch (error) {
         console.error("Error submitting form:", error);
-      } finally {
         setIsSubmitting(false);
       }
     }
@@ -221,67 +218,58 @@ export default function ArtisanKYC() {
   }
 
   const renderStepContent = () => {
-    if (isSubmitted) {
-      return (
-        <motion.div
-          className="text-center"
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5 }}
-        >
-          <div className="bg-gray-100 p-4 rounded-lg mb-6 text-left">
-        <p className="font-medium">
-          Token ID: <span className="font-normal">{formData.tokenId}</span>
-        </p>
-        <p className="font-medium">
-          Submitted on: <span className="font-normal">{new Date().toLocaleDateString()}</span>
-        </p>
-        {transactionHash && (
+  if (isSubmitted) {
+    return (
+      <motion.div
+        className="text-center"
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.5 }}
+      >
+        <div className="bg-gray-100 p-4 rounded-lg mb-6 text-left">
           <p className="font-medium">
-            Transaction: <a 
-              href={`https://sepolia.basescan.org/tx/${transactionHash}`}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-blue-600 hover:underline flex items-center gap-1"
-            >
-              View on Base Sepolia Scan <ExternalLink className="w-3 h-3" />
-            </a>
+            Verification ID: <span className="font-normal">{formData.verificationId || "Processing..."}</span>
           </p>
-        )}
-      </div>
-          <div className="flex justify-center mb-6">
-            <motion.div
-              className="w-20 h-20 rounded-full bg-gradient-to-r from-cyan-500 to-red-600 flex items-center justify-center"
-              initial={{ scale: 0 }}
-              animate={{ scale: 1 }}
-              transition={{ duration: 0.5, delay: 0.2 }}
-            >
-              <CheckCircle className="w-10 h-10 text-white" />
-            </motion.div>
-          </div>
-          <h2 className="text-2xl font-bold mb-4">Verification Request Submitted!</h2>
-          <p className="text-gray-600 mb-6">
-            Thank you for submitting your verification request. Our team will review your information and get back to
-            you within 2-3 business days.
+          <p className="font-medium">
+            Submitted on: <span className="font-normal">{new Date().toLocaleDateString()}</span>
           </p>
-          <div className="bg-gray-100 p-4 rounded-lg mb-6 text-left">
+          {transactionHash && (
             <p className="font-medium">
-              Verification ID:{" "}
-              <span className="font-normal">VR-{Math.random().toString(36).substring(2, 10).toUpperCase()}</span>
+              Transaction: <a 
+                href={`https://sepolia.basescan.org/tx/${transactionHash}`}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-blue-600 hover:underline flex items-center gap-1"
+              >
+                View on Base Sepolia Scan <ExternalLink className="w-3 h-3" />
+              </a>
             </p>
-            <p className="font-medium">
-              Submitted on: <span className="font-normal">{new Date().toLocaleDateString()}</span>
-            </p>
-          </div>
-          <button
-            className="px-6 py-3 rounded-full bg-black text-white font-medium hover:bg-gray-800 transition-colors"
-            onClick={() => (window.location.href = "/artisan-dashboard")}
+          )}
+        </div>
+        <div className="flex justify-center mb-6">
+          <motion.div
+            className="w-20 h-20 rounded-full bg-gradient-to-r from-cyan-500 to-red-600 flex items-center justify-center"
+            initial={{ scale: 0 }}
+            animate={{ scale: 1 }}
+            transition={{ duration: 0.5, delay: 0.2 }}
           >
-            Go to Dashboard
-          </button>
-        </motion.div>
-      )
-    }
+            <CheckCircle className="w-10 h-10 text-white" />
+          </motion.div>
+        </div>
+        <h2 className="text-2xl font-bold mb-4">Verification Request Submitted!</h2>
+        <p className="text-gray-600 mb-6">
+          Thank you for submitting your verification request. Our team will review your information and get back to
+          you within 2-3 business days.
+        </p>
+        <button
+          className="px-6 py-3 rounded-full bg-black text-white font-medium hover:bg-gray-800 transition-colors"
+          onClick={() => (window.location.href = "/artisan-dashboard")}
+        >
+          Go to Dashboard
+        </button>
+      </motion.div>
+    )
+  }
 
     switch (step) {
       case 1:
