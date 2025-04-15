@@ -52,8 +52,18 @@ export default function HeroSection() {
       <div className="hero-bg absolute inset-0 bg-cover bg-center bg-no-repeat z-0 scale-110">
         <div
           className="absolute inset-0 bg-gradient-to-b from-black/70 via-black/50 to-black"
-          style={{ backgroundImage: "url('/placeholder.svg?height=1080&width=1920')" }}
-        ></div>
+          style={{ 
+            backgroundImage: `
+            linear-gradient(to bottom, rgba(0, 0, 0, 0), rgba(0, 0, 0, 1)), 
+            url('https://cdn.pixabay.com/photo/2024/02/20/20/28/sculpture-8586186_1280.jpg')
+          `,
+          backgroundSize: "cover",
+          backgroundPosition: "center",
+          backgroundRepeat: "no-repeat",
+          //filter: "blur(12px)",
+          opacity: 0.5,
+           }}
+          ></div>
       </div>
 
       {/* Content */}
