@@ -84,7 +84,7 @@ export default function ArtisanJourney() {
       title: "Global Distribution",
       description:
         "Products are carefully packaged and shipped worldwide, connecting artisans to global markets and fair compensation.",
-      image: "/placeholder.svg?height=400&width=600",
+      image: "https://cdn.pixabay.com/photo/2020/11/03/05/34/workers-5708691_1280.jpg",
     },
   ]
 
