@@ -1,6 +1,7 @@
 import { ChevronRight } from "lucide-react";
 import { Button } from "./ui/button";
 import { Badge } from "./ui/badge";
+import Link from "next/link";
 
 export default function() {
     return (
@@ -32,7 +33,7 @@ export default function() {
                     <span>Earn rewards for active participation in governance</span>
                   </li>
                 </ul>
-                <Button className="bg-white text-black hover:bg-gray-800">Join the DAO</Button>
+                <Link href="./artisan-counsil-dao"><Button className="bg-white text-black hover:bg-gray-800">Join the DAO</Button></Link>
               </div>
               <div className="flex justify-center">
                 <div className="w-full max-w-[500px] aspect-video bg-gray-100 border border-gray-700 rounded-lg flex items-center justify-center">
