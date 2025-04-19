@@ -55,7 +55,7 @@ export default function IdentitySection() {
   if (!isConnected) {
     return (
       <div className="bg-white rounded-xl shadow-sm p-6">
-        <h2 className="text-xl font-bold">My Identity (SBT)</h2>
+        <h2 className="text-xl text-black font-bold">My Identity (SBT)</h2>
         <p className="mt-2 text-gray-600">Please connect your wallet to view your identity SBT.</p>
       </div>
     );
@@ -64,7 +64,7 @@ export default function IdentitySection() {
   if (!hasArtisanSBT) {
     return (
       <div className="bg-white rounded-xl shadow-sm p-6">
-        <h2 className="text-xl font-bold">My Identity (SBT)</h2>
+        <h2 className="text-xl text-black font-bold">My Identity (SBT)</h2>
         <p className="mt-2 text-gray-600">You don't have an artisan identity SBT.</p>
         <p className="text-sm text-gray-500">Contact your local verification authority to get verified.</p>
       </div>
@@ -80,7 +80,7 @@ export default function IdentitySection() {
     >
       <div className="p-6 border-b border-gray-100">
         <div className="flex justify-between items-center">
-          <h2 className="text-xl font-bold">My Identity (SBT)</h2>
+          <h2 className="text-xl text-black font-bold">My Identity (SBT)</h2>
           <div className={`flex items-center gap-1 px-2 py-1 ${isVerified ? 'bg-green-100 text-green-800' : 'bg-red-100 text-red-800'} rounded-full text-xs`}>
             <Shield className="h-3 w-3" />
             <span>{isVerified ? 'Verified' : 'Inactive'}</span>

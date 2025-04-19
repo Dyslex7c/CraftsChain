@@ -47,11 +47,11 @@ export default function Navbar() {
           <Link href="#products" className="text-gray-300 hover:text-white transition-colors">
             Products
           </Link>
-          <Link href="#blockchain" className="text-gray-300 hover:text-white transition-colors">
-            Blockchain
-          </Link>
-          <Link href="#nft" className="text-gray-300 hover:text-white transition-colors">
+          <Link href="/market-place" className="text-gray-300 hover:text-white transition-colors">
             NFT Marketplace
+          </Link>
+          <Link href="/artisan-dashboard" className="text-gray-300 hover:text-white transition-colors">
+            Artisan Dashboard
           </Link>
         </nav>
 

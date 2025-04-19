@@ -29,7 +29,7 @@ export default function DashboardSidebar({ isOpen, setIsOpen }) {
     { icon: Home, label: "Dashboard", href: "/artisan-dashboard" },
     { icon: Palette, label: "My Crafts", href: "/artisan-dashboard/crafts" },
     { icon: Package, label: "Orders", href: "/artisan-dashboard/orders" },
-    { icon: ShoppingBag, label: "Marketplace", href: "/marketplace" },
+    { icon: ShoppingBag, label: "Marketplace", href: "/market-place" },
     { icon: Award, label: "Eco Tokens", href: "/artisan-dashboard/eco-tokens" },
     { icon: Vote, label: "DAO Governance", href: "/artisan-dashboard/dao" },
     { icon: MessageCircle, label: "Messages", href: "/artisan-dashboard/messages" },

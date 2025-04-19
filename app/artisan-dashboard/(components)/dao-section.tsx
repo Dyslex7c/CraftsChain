@@ -32,7 +32,7 @@ export default function DaoSection() {
     >
       <div className="p-6 border-b border-gray-100">
         <div className="flex justify-between items-center">
-          <h2 className="text-xl font-bold">Artisan DAO Participation</h2>
+          <h2 className="text-xl text-black font-bold">Artisan DAO Participation</h2>
           <div className="flex items-center gap-1 px-2 py-1 bg-purple-100 text-purple-800 rounded-full text-xs">
             <Vote className="h-3 w-3" />
             <span>6 Votes Cast</span>
@@ -41,7 +41,7 @@ export default function DaoSection() {
       </div>
 
       <div className="p-6">
-        <h3 className="text-sm font-medium mb-3">Active Proposals</h3>
+        <h3 className="text-sm text-black font-medium mb-3">Active Proposals</h3>
 
         <div className="space-y-4">
           {proposals.map((proposal) => (

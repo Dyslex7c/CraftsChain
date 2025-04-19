@@ -111,7 +111,7 @@ export default function DashboardHeader({ toggleSidebar }) {
                   className="absolute right-0 mt-2 w-80 bg-white rounded-lg shadow-lg overflow-hidden z-50"
                 >
                   <div className="p-3 border-b border-gray-200 flex justify-between items-center">
-                    <h3 className="font-medium">Notifications</h3>
+                    <h3 className="text-black font-medium">Notifications</h3>
                     <button className="text-xs text-blue-600 hover:text-blue-800">Mark all as read</button>
                   </div>
                   <div className="max-h-96 overflow-y-auto">
@@ -124,7 +124,7 @@ export default function DashboardHeader({ toggleSidebar }) {
                         onClick={() => markAsRead(notification.id)}
                       >
                         <div className="flex justify-between items-start">
-                          <h4 className="font-medium text-sm">{notification.title}</h4>
+                          <h4 className="font-medium text-black text-sm">{notification.title}</h4>
                           <span className="text-xs text-gray-500">{notification.time}</span>
                         </div>
                         <p className="text-sm text-gray-600 mt-1">{notification.message}</p>

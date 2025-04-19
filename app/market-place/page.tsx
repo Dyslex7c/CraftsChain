@@ -138,7 +138,8 @@ export default function MarketplacePage() {
     { id: "bamboo", name: "Bamboo Crafts" },
     { id: "kantha", name: "Kantha Embroidery" },
     { id: "clay", name: "Clay Pottery" },
-    { id: "woodworking", name: "Wood Carving" }
+    { id: "woodworking", name: "Wood Carving" },
+    { id: "other", name: "Other"}
   ];
 
   const headerStyle = {
@@ -320,11 +321,14 @@ export default function MarketplacePage() {
       fetchListedNFTs();
     }
   }, [publicClient]);
-
+  console.log(listedNFTs);
+  
   // Filter products based on active category
   const filteredNFTs = activeCategory === "all" 
     ? listedNFTs 
     : listedNFTs.filter((nft) => nft.category === activeCategory);
+  console.log(filteredNFTs);
+  
 
   // Group NFTs by category (for the "all" view)
   const getNFTsByCategory = (categoryName) => {

@@ -27,7 +27,7 @@ export default function EcoTokenSection() {
       className="bg-white rounded-xl shadow-sm overflow-hidden"
     >
       <div className="p-6 border-b border-gray-100">
-        <h2 className="text-xl font-bold">Eco Token Tracker</h2>
+        <h2 className="text-xl text-black font-bold">Eco Token Tracker</h2>
       </div>
 
       <div className="p-6">
@@ -51,12 +51,12 @@ export default function EcoTokenSection() {
 
           <div className="sm:w-2/3">
             <div className="mb-4">
-              <h3 className="text-sm font-medium mb-2">Earned via</h3>
+              <h3 className="text-sm text-black font-medium mb-2">Earned via</h3>
               <div className="space-y-3">
                 {ecoActivities.map((activity) => (
                   <div key={activity.id} className="flex justify-between items-center p-3 bg-gray-50 rounded-lg">
                     <div>
-                      <p className="font-medium">{activity.title}</p>
+                      <p className="font-medium text-black">{activity.title}</p>
                       <p className="text-xs text-gray-500">{activity.date}</p>
                     </div>
                     <div className="px-2 py-1 bg-green-100 text-green-800 rounded-lg text-sm font-medium">
