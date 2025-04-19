@@ -6,6 +6,7 @@ import { Plus, ExternalLink, MoreHorizontal, Edit, Trash, QrCode, Video } from "
 import Image from "next/image"
 import { useReadContract, useAccount } from "wagmi"
 import { MintNftModal } from "./mint-nft-modal"
+import { CraftItemDetailModal, type CraftItemDetails } from "./craft-item-detail-modal"
 
 // ABI snippet for the needed functions from the contract
 const contractAbi = [
@@ -48,6 +49,9 @@ export default function CraftItemsSection() {
   const [loading, setLoading] = useState(true)
   const [tokenIds, setTokenIds] = useState([])
   const [mintModalOpen, setMintModalOpen] = useState(false)
+
+  const [selectedItem, setSelectedItem] = useState<CraftItemDetails | null>(null)
+  const [detailModalOpen, setDetailModalOpen] = useState(false)
 
   // Get total token count
   const { data: currentTokenId } = useReadContract({
@@ -198,6 +202,29 @@ export default function CraftItemsSection() {
     }
   }
 
+  const handleItemClick = async (item) => {
+    try {
+      // Fetch the full metadata from IPFS
+      const response = await fetch(`${IPFS_GATEWAY}${item.ipfsHash}`)
+      const metadata = await response.json()
+
+      // Create a complete item object with all details
+      const detailedItem: CraftItemDetails = {
+        id: item.id,
+        name: metadata.name,
+        description: metadata.description,
+        image: item.image, // Use the already processed image URL
+        attributes: metadata.attributes,
+        ipfsHash: item.ipfsHash,
+      }
+
+      setSelectedItem(detailedItem)
+      setDetailModalOpen(true)
+    } catch (error) {
+      console.error("Error fetching item details:", error)
+    }
+  }
+
   return (
     <>
       <motion.div
@@ -230,7 +257,11 @@ export default function CraftItemsSection() {
         ) : (
           <div className="divide-y divide-gray-100">
             {craftItems.map((item) => (
-              <div key={item.id} className="p-4 sm:p-6 hover:bg-gray-50 transition-colors">
+              <div
+                key={item.id}
+                className="p-4 sm:p-6 hover:bg-gray-50 transition-colors cursor-pointer"
+                onClick={() => handleItemClick(item)}
+              >
                 <div className="flex flex-col sm:flex-row gap-4">
                   <div className="sm:w-24 sm:h-24 rounded-lg overflow-hidden relative">
                     <Image
@@ -320,6 +351,7 @@ export default function CraftItemsSection() {
         </div>
       </motion.div>
 
+      <CraftItemDetailModal open={detailModalOpen} onOpenChange={setDetailModalOpen} item={selectedItem} />
       <MintNftModal open={mintModalOpen} onOpenChange={setMintModalOpen} />
     </>
   )
